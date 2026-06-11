@@ -3,10 +3,8 @@ package worker;
 import java.time.LocalDate;
 
 public class Employee extends Worker {
-	private static int employeeID = 0;
-	private LocalDate hireDate;
-	
-	public Employee() {}
+	protected static int employeeID = 0;
+	protected LocalDate hireDate;
 	
 	public Employee(String name, LocalDate birthDate, LocalDate hireDate) {
 		super(name, birthDate);
@@ -16,10 +14,11 @@ public class Employee extends Worker {
 	
 	@Override
 	public String toString() {
-		return	"Employee{" + "\n" +
-				"	EmployeeID: " + employeeID + "\n" +
-				"	Date hired: " + this.hireDate + "\n" +
-				"}";
+		return "Employee{" + "\n"
+				+ "	EmployeeID: " + employeeID + "\n"
+				+ "	Name: " + this.name + "\n"
+				+ "	BirthDate: " + this.birthDate + "\n"
+				+ "	HireDate: " + this.hireDate + "\n"
+				+ "}";
 	}
-
 }

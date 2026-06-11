@@ -1,12 +1,13 @@
 package worker;
 
 import java.time.LocalDate;
+import java.text.DecimalFormat;
 
 public class SalariedEmployee extends Employee {
 	private double annualSalary;
 	private boolean isRetired = false;
 	
-	public SalariedEmployee() {}
+	DecimalFormat df = new DecimalFormat("#.00");
 	
 	public SalariedEmployee(String name, LocalDate birthDate, LocalDate hireDate, double annualSalary) {
 		super(name, birthDate, hireDate);
@@ -14,8 +15,8 @@ public class SalariedEmployee extends Employee {
 	}
 	
 	public void retire(LocalDate endDate) {
-		isRetired = true;
 		terminate(endDate);
+		this.isRetired = true;
 	}
 	
 	@Override
@@ -25,9 +26,14 @@ public class SalariedEmployee extends Employee {
 	
 	@Override
 	public String toString() {
-		return "SalariedEmployee{" + "\n" +
-				"	Annual salary: " + this.annualSalary + "\n" +
-				"	Is retired: " + this.isRetired + "\n" +
-				"}";
+		return "SalariedEmployee{" + "\n"
+				+ "	Name: " + this.name + "\n"
+				+ "	BirthDate: " + this.birthDate + "\n"
+				+ "	HireDate: " + this.hireDate + "\n"
+				+ "	EndDate: " + this.endDate + "\n"
+				+ "	AnnualSalary: " + df.format(this.annualSalary) + "$" + "\n"
+				+ "	MonthlySalary: " + df.format(this.collectPay()) + "$" + "\n"
+				+ "	IsRetired: " + this.isRetired + "\n"
+				+ "}";
 	}
 }

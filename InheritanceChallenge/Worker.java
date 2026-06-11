@@ -1,14 +1,12 @@
 package worker;
 
-import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Worker {
-	private String name;
-	private LocalDate birthDate;
-	private LocalDate endDate;
-	
-	public Worker() {}
+	protected String name;
+	protected LocalDate birthDate;
+	protected LocalDate endDate;
 	
 	public Worker(String name, LocalDate birthDate) {
 		this.name = name;
@@ -16,8 +14,9 @@ public class Worker {
 	}
 	
 	public int getAge() {
-		LocalDate now = LocalDate.now();
-		int age = (int)ChronoUnit.YEARS.between(this.birthDate, now);
+		LocalDate today = LocalDate.now();
+		Period agePeriod = Period.between(this.birthDate, today);
+		int age = agePeriod.getYears();
 		
 		return age;
 	}
@@ -30,12 +29,11 @@ public class Worker {
 		this.endDate = endDate;
 	}
 	
-	@Override
 	public String toString() {
-		return 	"Worker{" + "\n" +
-				"	Name: " + this.name + "\n" + 
-				"	Date of birth: " + this.birthDate + "\n" +
-				"	Last day of employment: " + this.endDate + "\n" +
-				"}";
+		return "Worker{" + "\n"
+				+ "	Name: " + this.name + "\n"
+				+ "	birthDate: " + this.birthDate + "\n"
+				+ "	endDate: " + this.endDate + "\n"
+				+ "}";
 	}
 }
